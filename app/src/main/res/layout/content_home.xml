@@ -4,12 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.netizenbd.todonetizen.HomeActivity"
     tools:showIn="@layout/activity_home">
 
+    <TextView
+        android:id="@+id/textView_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="You need to add new Institution.\nTap the bottom button to add new institution.\nTap the upper button to logout."
+        android:textSize="18sp" />
+
+    <!--
+    in java: visibility gone of scrollView part if no institution found.
+             visibility gone of title TextView if institution found.
+    -->
+
     <ScrollView
+        android:id="@+id/scrollView_home_main_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,6 +37,10 @@
 
             <Spinner
                 android:id="@+id/spinner_instituteName"
+                android:background="#aebae1"
+                android:minWidth="200dp"
+                android:minHeight="15dp"
+                android:padding="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

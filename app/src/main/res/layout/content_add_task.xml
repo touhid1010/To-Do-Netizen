@@ -18,7 +18,8 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Institute Name_addTask"
+                android:id="@+id/textView_instName_addTask"
+                android:text="Institute Name"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:padding="15dp"
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Visited Day: "
+                    android:text="Visited Date: "
                     android:padding="10dp"
                     android:textSize="18sp"
                     android:layout_width="wrap_content"
@@ -44,7 +45,30 @@
                 <EditText
                     android:id="@+id/editText_visitedDate"
                     android:inputType="date"
-                    android:hint="Visited day"
+                    android:focusable="false"
+                    android:hint="Tap to select day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Visited Time: "
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/editText_visitedTime"
+                    android:inputType="time"
+                    android:focusable="false"
+                    android:hint="Tap to select time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -80,7 +104,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Visited Day: "
+                    android:text="Follow up Date: "
                     android:padding="10dp"
                     android:textSize="18sp"
                     android:layout_width="wrap_content"
@@ -89,13 +113,37 @@
                 <EditText
                     android:id="@+id/editText_nextFollowupDate"
                     android:inputType="date"
-                    android:hint="Next followup day"
+                    android:focusable="false"
+                    android:hint="Tap to select date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Follow up Time: "
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/editText_nextFollowupTime"
+                    android:inputType="time"
+                    android:hint="Tap to select time"
+                    android:layout_width="match_parent"
+                    android:focusable="false"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
             <Button
+                android:id="@+id/button_save_addTask"
                 android:text="Save"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
