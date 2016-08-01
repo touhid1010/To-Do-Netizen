@@ -29,6 +29,12 @@ public class ViewInstitutionDetails extends AppCompatActivity {
         textView_instName_details.setText(s);
 
 
+        // get intent message and set title inst. name // intent from ViewTaskList.java or HomeActivity.java both
+        Bundle b = getIntent().getExtras();
+        String s2 = b.getString(HomeActivity.HOME_TO_VIEWTASKLIST_KEY, "");
+        textView_instName_details.setText(s2);
+
+
 
     } // end of onCreate
 

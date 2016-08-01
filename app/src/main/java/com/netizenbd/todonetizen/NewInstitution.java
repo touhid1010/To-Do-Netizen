@@ -44,16 +44,6 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
 
 
 
-        /**
-         * set visibility of update and delete button
-         * detail button make update and delete button visible, clicked from home page
-         * new button make update and delete button invisible, clicked from home page
-         */
-
-
-
-
-
     } // end of onCreate
 
     @Override
@@ -84,15 +74,12 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
                         editText_instAuthorityDesignation.getText().clear();
                         editText_mobileNo.getText().clear();
                         editText_studentAmount.getText().clear();
-
                     } else {
                         Toast.makeText(NewInstitution.this, "Data not inserted. ID may exists!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 break;
-
-
         }
     }
 

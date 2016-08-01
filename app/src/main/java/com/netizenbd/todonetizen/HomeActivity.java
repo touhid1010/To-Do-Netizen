@@ -49,7 +49,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     MyDbHelper myDbHelper;
 
     public final static String HOME_TO_VIEWTASKLIST_KEY = "spinnerItem";
-    public final static String HOME_TO_BUTTON_KEY = "whichbutton";
 
 
     @Override
@@ -128,7 +127,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_instDetails:
 
                 Intent inte = new Intent(getApplicationContext(), ViewInstitutionDetails.class);
-                inte.putExtra(HOME_TO_BUTTON_KEY, "details");
+                inte.putExtra(HOME_TO_VIEWTASKLIST_KEY, spinner_instituteName.getSelectedItem().toString());
                 startActivity(inte);
 
                 break;
@@ -242,27 +241,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getFollowUpTimes() {
-//        String stringCursor = ""; // in a method it should initialized first
-//        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-//        String date = df.format(Calendar.getInstance().getTime());
 
-//        // get today's tasks from today's date
-//        Cursor cursorTask = myDbHelper.getAllFollowupDateTime(date);
-//
-//        if (cursorTask != null) {
-//            int i = 0;
-//            while (cursorTask.moveToNext()) {
-//                stringCursor = stringCursor + "ID: " +cursorTask.getString(i) + " : " + cursorTask.getString(i + 1) + " : " + cursorTask.getString(i + 2) + "\n";
-//                i++;
-//            }
-//            textView_showFollowUpTime.setText(stringCursor);
-//
-//        } else {
-//            textView_showFollowUpTime.setText("Today is: " + date.toString() + "\nYou have no schedule today!");
-//        }
-
-
-//-------------------------------------------------------------------------------------------------
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         String date = df.format(Calendar.getInstance().getTime());
         // get today's tasks from today's date
@@ -275,6 +254,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             // set title first
 
             textView_followupListTitle.setText("Today's Schedule (" + date.toString() + ")");
+
 
             // using table layout
 
@@ -384,7 +364,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 // add the row on the table
                 tableLayout.addView(tableRow);
-
 
             }
         } else {
