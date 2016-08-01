@@ -224,13 +224,26 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @return List
+     *
      */
     public Cursor getAllFollowupDateTime(String timeCalendar) { // task to generate tasks table (return cursor for easy implementation of data in a table)
 
         // get all tasks for today
 //        String getTodaysTask = "SELECT * FROM " + TABLE_TASK;
-        String getTodaysTask = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_FOLLOWUP_DATE + "='" + timeCalendar + "';";
+        String getTodaysTask = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_FOLLOWUP_DATE + "='" + timeCalendar + "' ORDER BY "+COLUMN_TASK_FOLLOWUP_TIME+" ASC";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(getTodaysTask, null);
+
+        // returning task cursor
+        return cursor;
+
+    }
+
+    public Cursor getInstNameForFollowupDateTime(String isntId) { // task to generate tasks table (return cursor for easy implementation of data in a table)
+
+        // get all tasks for today
+//        String getTodaysTask = "SELECT * FROM " + TABLE_TASK;
+        String getTodaysTask = "SELECT " + COLUMN_INSTITUTION_NAME + " FROM " + TABLE_INSTITUTION + " WHERE " + COLUMN_INSTITUTION_ID + "='" + isntId + "';";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(getTodaysTask, null);
 

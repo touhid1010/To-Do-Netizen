@@ -41,7 +41,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             button_newTask,
             button_instDetails;
 
-    TextView textView_home_title;
+    TextView textView_home_title,
+            textView_followupListTitle;
 
     ScrollView scrollView_home_main_button;
 
@@ -82,6 +83,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         button_instDetails.setOnClickListener(this);
 
         textView_home_title = (TextView) findViewById(R.id.textView_home_title);
+        textView_followupListTitle = (TextView) findViewById(R.id.textView_followupListTitle);
 
 
         scrollView_home_main_button = (ScrollView) findViewById(R.id.scrollView_home_main_button);
@@ -259,12 +261,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        }
 
 
-
-
-
-
-
-
 //-------------------------------------------------------------------------------------------------
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         String date = df.format(Calendar.getInstance().getTime());
@@ -273,112 +269,126 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Cursor cursorTask = myDbHelper.getAllFollowupDateTime(date);
 
 
-        // using table layout
+        if (cursorTask.getCount() > 0) {
 
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_todaysFollowupList);
+            // set title first
 
-        // clear previous views from linearLayout
-        tableLayout.removeAllViews();
-
-        TableRow tbrow0 = new TableRow(this);
-
-        // Serial
-        TextView tv0 = new TextView(this);
-        tv0.setText("Sl.No. ");
-        tv0.setPadding(10,10,10,10);
-        tv0.setTextColor(Color.WHITE);
-        tv0.setGravity(Gravity.CENTER);
-        tbrow0.addView(tv0);
-
-        // visited Date and time
-        TextView tv1 = new TextView(this);
-        tv1.setText(" Inst.\nName/ID ");
-        tv1.setPadding(10,10,10,10);
-        tv1.setTextColor(Color.WHITE);
-        tv1.setGravity(Gravity.CENTER);
-        tbrow0.addView(tv1);
+            textView_followupListTitle.setText("Today's Schedule (" + date.toString() + ")");
 
 
-        // note
-        TextView tv2 = new TextView(this);
-        tv2.setText(" Note ");
-        tv2.setPadding(10,10,10,10);
-        tv2.setTextColor(Color.WHITE);
-        tv2.setGravity(Gravity.CENTER);
-        tbrow0.addView(tv2);
+            // using table layout
 
+            TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_todaysFollowupList);
 
-        // following date and time
-        TextView tv3 = new TextView(this);
-        tv3.setText(" Followup\nDate & Time ");
-        tv3.setPadding(10,10,10,10);
-        tv3.setTextColor(Color.WHITE);
-        tv3.setGravity(Gravity.CENTER);
-        tbrow0.addView(tv3);
+            // clear previous views from linearLayout
+            tableLayout.removeAllViews();
 
-        tbrow0.setBackgroundColor(Color.GRAY);
-        tableLayout.addView(tbrow0);
+            TableRow tbrow0 = new TableRow(this);
 
-        boolean rowColor = false;
-        int j = 1;
-        while (cursorTask.moveToNext()) {
-            int i = 0;
+//        // Serial
+//        TextView tv0 = new TextView(this);
+//        tv0.setText("Sl.No. ");
+//        tv0.setPadding(10, 10, 10, 10);
+//        tv0.setTextColor(Color.WHITE);
+//        tv0.setGravity(Gravity.CENTER);
+//        tbrow0.addView(tv0);
 
-            TableRow tableRow = new TableRow(this);
+            // visited Date and time
+            TextView tv1 = new TextView(this);
+            tv1.setText(" Inst.\nName/ID ");
+            tv1.setPadding(10, 10, 10, 10);
+            tv1.setTextColor(Color.WHITE);
+            tv1.setGravity(Gravity.CENTER);
+            tbrow0.addView(tv1);
 
-            // Serial no.
-            TextView textView_sn = new TextView(this);
-
-            textView_sn.setText("" + j); // serial no is not related with database, it's just serial, here j is only for serial no
-            j++;
-//            i++;
-            textView_sn.setTextColor(Color.BLACK);
-            textView_sn.setGravity(Gravity.CENTER);
-
-            tableRow.addView(textView_sn);
-
-            // Inst. Name and ID
-            TextView textView_name = new TextView(this);
-            textView_name.setText(" " + cursorTask.getString(i) + " \n" + cursorTask.getString(i + 1) + " ");
-            i++;
-            i++;
-            textView_name.setTextColor(Color.BLACK);
-            textView_name.setGravity(Gravity.CENTER);
-
-            tableRow.addView(textView_name);
 
             // note
-            TextView textView_phone = new TextView(this);
-            textView_phone.setText(" " + cursorTask.getString(i) + " ");
-            i++;
-            textView_phone.setTextColor(Color.BLACK);
-            textView_phone.setGravity(Gravity.CENTER);
+            TextView tv2 = new TextView(this);
+            tv2.setText(" Note ");
+            tv2.setPadding(10, 10, 10, 10);
+            tv2.setTextColor(Color.WHITE);
+            tv2.setGravity(Gravity.CENTER);
+            tbrow0.addView(tv2);
 
-            tableRow.addView(textView_phone);
 
-            // followup Date and time
-            TextView textView_address = new TextView(this);
-            textView_address.setText(" " + cursorTask.getString(i) + " \n" + cursorTask.getString(i + 1) + " ");
-            i++;
-            i++;
-            textView_address.setTextColor(Color.BLACK);
-            textView_address.setGravity(Gravity.CENTER);
+            // following date and time
+            TextView tv3 = new TextView(this);
+            tv3.setText(" Followup Time ");
+            tv3.setPadding(10, 10, 10, 10);
+            tv3.setTextColor(Color.WHITE);
+            tv3.setGravity(Gravity.CENTER);
+            tbrow0.addView(tv3);
 
-            tableRow.addView(textView_address);
+            tbrow0.setBackgroundColor(Color.GRAY);
+            tableLayout.addView(tbrow0);
 
-            // set color background for table row after each row, starts from 2nd row
-            if (rowColor) {
-                tableRow.setBackgroundColor(0xFFCCCCCC);
-                rowColor = false;
-            } else {
+            boolean rowColor = false;
+            int j = 1;
+            while (cursorTask.moveToNext()) {
+                int i = 0;
 
-                rowColor = true;
+                TableRow tableRow = new TableRow(this);
+//            // Serial no.
+//            TextView textView_sn = new TextView(this);
+
+//            textView_sn.setText("" + j); // serial no is not related with database, it's just serial, here j is only for serial no
+//            j++;
+////            i++;
+//            textView_sn.setTextColor(Color.BLACK);
+//            textView_sn.setGravity(Gravity.CENTER);
+//
+//            tableRow.addView(textView_sn);
+
+                // Inst. Name and ID (get name from inst table)
+                Cursor c = myDbHelper.getInstNameForFollowupDateTime(cursorTask.getString(i)); // passed id as argument
+                String sName = "";
+                while (c.moveToNext()) {
+                    sName = c.getString(0);
+                }
+                TextView textView_name = new TextView(this);
+                textView_name.setText(" " + sName + "\n" + cursorTask.getString(i) + " ");
+                i++;
+                i++;
+                textView_name.setTextColor(Color.BLACK);
+                textView_name.setGravity(Gravity.CENTER);
+
+                tableRow.addView(textView_name);
+
+                // note
+                TextView textView_phone = new TextView(this);
+                textView_phone.setText(" " + cursorTask.getString(i + 1) + " ");
+                i++;
+                textView_phone.setTextColor(Color.BLACK);
+                textView_phone.setGravity(Gravity.CENTER);
+
+                tableRow.addView(textView_phone);
+
+                // followup time
+                TextView textView_address = new TextView(this);
+                textView_address.setText(" " + cursorTask.getString(i + 2) + " ");
+                i++;
+                i++;
+                textView_address.setTextColor(Color.BLACK);
+                textView_address.setGravity(Gravity.CENTER);
+
+                tableRow.addView(textView_address);
+
+                // set color background for table row after each row, starts from 2nd row
+                if (rowColor) {
+                    tableRow.setBackgroundColor(0xFFCCCCCC);
+                    rowColor = false;
+                } else {
+
+                    rowColor = true;
+                }
+
+                // add the row on the table
+                tableLayout.addView(tableRow);
+
+
             }
-
-            // add the row on the table
-            tableLayout.addView(tableRow);
-
-
+        } else {
+            textView_followupListTitle.setText("Today is: " + date.toString() + "\nYou have no schedule today!");
         }
 
 
