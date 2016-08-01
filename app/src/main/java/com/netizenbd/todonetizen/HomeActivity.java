@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,10 +20,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -41,7 +48,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     MyDbHelper myDbHelper;
 
     public final static String HOME_TO_VIEWTASKLIST_KEY = "spinnerItem";
-
 
 
     @Override
@@ -77,6 +83,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         textView_home_title = (TextView) findViewById(R.id.textView_home_title);
 
+
         scrollView_home_main_button = (ScrollView) findViewById(R.id.scrollView_home_main_button);
 
 
@@ -91,11 +98,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //
 
 
+        getFollowUpTimes();
+
         getAllInstName();
 
 
-
     } // end of onCreate
+
 
     @Override
     public void onClick(View v) {
@@ -204,28 +213,175 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setMessage("Want to exit without Logout?");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Want to exit without Logout?");
 
-                        builder.setNegativeButton("No", null);
-                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // end activity
-                                finish();
+                    builder.setNegativeButton("No", null);
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // end activity
+                            finish();
 
-                            }
-                        });
+                        }
+                    });
 
 
-                        AlertDialog dialog = builder.show();
-                        TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
-                        messageText.setGravity(Gravity.CENTER);
-                        dialog.show();
-                    }
-                    return true;
+                    AlertDialog dialog = builder.show();
+                    TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+                    messageText.setGravity(Gravity.CENTER);
+                    dialog.show();
+            }
+            return true;
 
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    private void getFollowUpTimes() {
+//        String stringCursor = ""; // in a method it should initialized first
+//        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+//        String date = df.format(Calendar.getInstance().getTime());
+
+//        // get today's tasks from today's date
+//        Cursor cursorTask = myDbHelper.getAllFollowupDateTime(date);
+//
+//        if (cursorTask != null) {
+//            int i = 0;
+//            while (cursorTask.moveToNext()) {
+//                stringCursor = stringCursor + "ID: " +cursorTask.getString(i) + " : " + cursorTask.getString(i + 1) + " : " + cursorTask.getString(i + 2) + "\n";
+//                i++;
+//            }
+//            textView_showFollowUpTime.setText(stringCursor);
+//
+//        } else {
+//            textView_showFollowUpTime.setText("Today is: " + date.toString() + "\nYou have no schedule today!");
+//        }
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        String date = df.format(Calendar.getInstance().getTime());
+        // get today's tasks from today's date
+        myDbHelper = new MyDbHelper(getApplicationContext());
+        Cursor cursorTask = myDbHelper.getAllFollowupDateTime(date);
+
+
+        // using table layout
+
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_todaysFollowupList);
+
+        // clear previous views from linearLayout
+        tableLayout.removeAllViews();
+
+        TableRow tbrow0 = new TableRow(this);
+
+        // Serial
+        TextView tv0 = new TextView(this);
+        tv0.setText("Sl.No. ");
+        tv0.setPadding(10,10,10,10);
+        tv0.setTextColor(Color.WHITE);
+        tv0.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv0);
+
+        // visited Date and time
+        TextView tv1 = new TextView(this);
+        tv1.setText(" Inst.\nName/ID ");
+        tv1.setPadding(10,10,10,10);
+        tv1.setTextColor(Color.WHITE);
+        tv1.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv1);
+
+
+        // note
+        TextView tv2 = new TextView(this);
+        tv2.setText(" Note ");
+        tv2.setPadding(10,10,10,10);
+        tv2.setTextColor(Color.WHITE);
+        tv2.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv2);
+
+
+        // following date and time
+        TextView tv3 = new TextView(this);
+        tv3.setText(" Followup\nDate & Time ");
+        tv3.setPadding(10,10,10,10);
+        tv3.setTextColor(Color.WHITE);
+        tv3.setGravity(Gravity.CENTER);
+        tbrow0.addView(tv3);
+
+        tbrow0.setBackgroundColor(Color.GRAY);
+        tableLayout.addView(tbrow0);
+
+        boolean rowColor = false;
+        int j = 1;
+        while (cursorTask.moveToNext()) {
+            int i = 0;
+
+            TableRow tableRow = new TableRow(this);
+
+            // Serial no.
+            TextView textView_sn = new TextView(this);
+
+            textView_sn.setText("" + j); // serial no is not related with database, it's just serial, here j is only for serial no
+            j++;
+//            i++;
+            textView_sn.setTextColor(Color.BLACK);
+            textView_sn.setGravity(Gravity.CENTER);
+
+            tableRow.addView(textView_sn);
+
+            // Inst. Name and ID
+            TextView textView_name = new TextView(this);
+            textView_name.setText(" " + cursorTask.getString(i) + " \n" + cursorTask.getString(i + 1) + " ");
+            i++;
+            i++;
+            textView_name.setTextColor(Color.BLACK);
+            textView_name.setGravity(Gravity.CENTER);
+
+            tableRow.addView(textView_name);
+
+            // note
+            TextView textView_phone = new TextView(this);
+            textView_phone.setText(" " + cursorTask.getString(i) + " ");
+            i++;
+            textView_phone.setTextColor(Color.BLACK);
+            textView_phone.setGravity(Gravity.CENTER);
+
+            tableRow.addView(textView_phone);
+
+            // followup Date and time
+            TextView textView_address = new TextView(this);
+            textView_address.setText(" " + cursorTask.getString(i) + " \n" + cursorTask.getString(i + 1) + " ");
+            i++;
+            i++;
+            textView_address.setTextColor(Color.BLACK);
+            textView_address.setGravity(Gravity.CENTER);
+
+            tableRow.addView(textView_address);
+
+            // set color background for table row after each row, starts from 2nd row
+            if (rowColor) {
+                tableRow.setBackgroundColor(0xFFCCCCCC);
+                rowColor = false;
+            } else {
+
+                rowColor = true;
+            }
+
+            // add the row on the table
+            tableLayout.addView(tableRow);
+
+
+        }
+
+
+    }
+
 }

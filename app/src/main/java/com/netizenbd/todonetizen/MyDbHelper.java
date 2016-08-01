@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -216,6 +217,22 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_INSTITUTION_ID + "='" + stringId + "';";
         SQLiteDatabase db2 = this.getReadableDatabase();
         Cursor cursor = db2.rawQuery(selectQuery, null);
+
+        // returning task cursor
+        return cursor;
+
+    }
+
+    /**
+     * @return List
+     */
+    public Cursor getAllFollowupDateTime(String timeCalendar) { // task to generate tasks table (return cursor for easy implementation of data in a table)
+
+        // get all tasks for today
+//        String getTodaysTask = "SELECT * FROM " + TABLE_TASK;
+        String getTodaysTask = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_FOLLOWUP_DATE + "='" + timeCalendar + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(getTodaysTask, null);
 
         // returning task cursor
         return cursor;

@@ -35,20 +35,41 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#dfdfdf"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Today's Followup Time"
+                android:textSize="18sp" />
+
+            <TableLayout
+                android:id="@+id/tableLayout_todaysFollowupList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <!--Make dynamic table from java-->
+
+            </TableLayout>
+
             <Spinner
                 android:id="@+id/spinner_instituteName"
-                android:background="#aebae1"
-                android:minWidth="200dp"
-                android:minHeight="15dp"
-                android:padding="12dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#aebae1"
+                android:minHeight="15dp"
+                android:minWidth="200dp"
+                android:padding="12dp" />
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button_showTask"

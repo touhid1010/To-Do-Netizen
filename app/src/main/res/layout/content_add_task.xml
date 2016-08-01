@@ -46,7 +46,7 @@
                     android:id="@+id/editText_visitedDate"
                     android:inputType="date"
                     android:focusable="false"
-                    android:hint="Tap to select day"
+                    android:hint="Year/Month/Day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -114,7 +114,7 @@
                     android:id="@+id/editText_nextFollowupDate"
                     android:inputType="date"
                     android:focusable="false"
-                    android:hint="Tap to select date"
+                    android:hint="Year/Month/Day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
