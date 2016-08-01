@@ -44,17 +44,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/button_showTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Task" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/button_newTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Task" />
+                <Button
+                    android:id="@+id/button_showTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show Task" />
+
+                <Button
+                    android:id="@+id/button_newTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Task" />
+
+                <Button
+                    android:id="@+id/button_instDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Details" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

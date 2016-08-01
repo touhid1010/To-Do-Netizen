@@ -1,6 +1,8 @@
 package com.netizenbd.todonetizen;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +10,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -26,7 +31,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Spinner spinner_instituteName;
 
     Button button_showTask,
-            button_newTask;
+            button_newTask,
+            button_instDetails;
 
     TextView textView_home_title;
 
@@ -64,8 +70,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         button_showTask = (Button) findViewById(R.id.button_showTask);
         button_newTask = (Button) findViewById(R.id.button_newTask);
+        button_instDetails = (Button) findViewById(R.id.button_instDetails);
         button_showTask.setOnClickListener(this);
         button_newTask.setOnClickListener(this);
+        button_instDetails.setOnClickListener(this);
 
         textView_home_title = (TextView) findViewById(R.id.textView_home_title);
 
@@ -103,6 +111,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 Intent in = new Intent(getApplicationContext(), AddTask.class);
                 in.putExtra(HOME_TO_VIEWTASKLIST_KEY, spinner_instituteName.getSelectedItem().toString());
                 startActivity(in);
+                break;
+
+            case R.id.button_instDetails:
+
+                Intent inte = new Intent(getApplicationContext(), ViewInstitutionDetails.class);
+                inte.putExtra(HOME_TO_VIEWTASKLIST_KEY, spinner_instituteName.getSelectedItem().toString());
+                startActivity(inte);
+
                 break;
 
             case R.id.fab_newInstitution:
@@ -179,5 +195,37 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         finish();
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         super.onRestart();
+    }
+
+    // Go to previous page when pressing back button
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Want to exit without Logout?");
+
+                        builder.setNegativeButton("No", null);
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // end activity
+                                finish();
+
+                            }
+                        });
+
+
+                        AlertDialog dialog = builder.show();
+                        TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+                        messageText.setGravity(Gravity.CENTER);
+                        dialog.show();
+                    }
+                    return true;
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
