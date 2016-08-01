@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     MyDbHelper myDbHelper;
 
     public final static String HOME_TO_VIEWTASKLIST_KEY = "spinnerItem";
+    public final static String HOME_TO_BUTTON_KEY = "whichbutton";
 
 
     @Override
@@ -127,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_instDetails:
 
                 Intent inte = new Intent(getApplicationContext(), ViewInstitutionDetails.class);
-                inte.putExtra(HOME_TO_VIEWTASKLIST_KEY, spinner_instituteName.getSelectedItem().toString());
+                inte.putExtra(HOME_TO_BUTTON_KEY, "details");
                 startActivity(inte);
 
                 break;
@@ -274,7 +275,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             // set title first
 
             textView_followupListTitle.setText("Today's Schedule (" + date.toString() + ")");
-
 
             // using table layout
 

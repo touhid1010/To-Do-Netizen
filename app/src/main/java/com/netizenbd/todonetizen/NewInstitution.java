@@ -39,7 +39,19 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
         editText_studentAmount = (EditText) findViewById(R.id.editText_studentAmount);
 
         button_saveInstitute = (Button) findViewById(R.id.button_saveInstitute);
+
         button_saveInstitute.setOnClickListener(this);
+
+
+
+        /**
+         * set visibility of update and delete button
+         * detail button make update and delete button visible, clicked from home page
+         * new button make update and delete button invisible, clicked from home page
+         */
+
+
+
 
 
     } // end of onCreate
@@ -79,6 +91,8 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
                 }
 
                 break;
+
+
         }
     }
 

@@ -17,160 +17,178 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:text="Enter New Institution Details"
-                android:padding="8dp"
-                android:textSize="20sp"
-                android:background="#9aa0bf"
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/linearLayout_savePart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Inst. ID: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_instId"
-                    android:digits="abcdefghijklmnopqrstuvwxyz -123456789"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Institute ID" />
+                    android:background="#9aa0bf"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Enter New Institution Details"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Inst. ID: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_instId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="abcdefghijklmnopqrstuvwxyz -123456789"
+                        android:hint="Institute ID" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Inst. Name: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_instName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="abcdefghijklmnopqrstuvwxyz -123456789"
+                        android:hint="Institute Name" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Address: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_instAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Institute Address" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Authority Name: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_instAuthorityName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Authority Name" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Designation: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_instAuthorityDesignation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Authority Designation" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Mobile No.: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_mobileNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Mobile No."
+                        android:inputType="phone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Student Amount: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_studentAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Student amount"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/button_saveInstitute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Save" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Inst. Name: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_instName"
-                    android:digits="abcdefghijklmnopqrstuvwxyz -123456789"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Institute Name" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Address: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_instAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Institute Address" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Authority Name: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_instAuthorityName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Authority Name" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Designation: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_instAuthorityDesignation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Authority Designation" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Mobile No.: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_mobileNo"
-                    android:inputType="phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Mobile No." />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Student Amount: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editText_studentAmount"
-                    android:inputType="number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Student amount" />
-
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/button_saveInstitute"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
-                android:text="Save" />
 
 
         </LinearLayout>

@@ -30,7 +30,6 @@ public class ViewInstitutionDetails extends AppCompatActivity {
 
 
 
-
     } // end of onCreate
 
 }
