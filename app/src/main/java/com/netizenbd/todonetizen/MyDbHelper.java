@@ -188,7 +188,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * todo
+     *
      */
     public Cursor getAllTask(String instName) { // task to generate tasks table (return cursor for easy implementation of data in a table)
         String stringId = ""; // in a method it should initialized first
@@ -232,7 +232,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     }
 
-    // todo
+    //
     public Cursor getInstNameForFollowupDateTime(String isntId) { // task to generate tasks table (return cursor for easy implementation of data in a table)
 
         // get all tasks for today
@@ -246,7 +246,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
 
-    // ok
+    //
     public long updateInstitution(String isntNamePrevious, String isntNameNew, String isntAddress, String isntAuthority,
                                   String isntDesig, String isntMobile, String isntStuAmount) {
 
