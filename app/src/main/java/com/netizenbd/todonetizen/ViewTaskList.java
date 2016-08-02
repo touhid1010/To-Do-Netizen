@@ -183,7 +183,6 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             // add the row on the table
             tableLayout.addView(tableRow);
 
-
         }
 
 

@@ -5,11 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Editable;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -44,7 +41,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     // table creation sql
     private static final String SQL_CreateInstitutionTable = "CREATE TABLE " + TABLE_INSTITUTION + "(" +
-            COLUMN_INSTITUTION_ID + " TEXT PRIMARY KEY, " +
+            COLUMN_INSTITUTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_INSTITUTION_NAME + " TEXT UNIQUE, " +
             COLUMN_INSTITUTION_ADDRESS + " TEXT, " +
             COLUMN_INSTITUTION_AUTHORITY_NAME + " TEXT, " +
@@ -62,7 +59,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 //            COLUMN_INSTITUTION_STUDENT_AMOUNT + " TEXT)";
 
     private static final String SQL_CreateTaskTable = "CREATE TABLE " + TABLE_TASK + "(" +
-            COLUMN_INSTITUTION_ID + " TEXT, " + // institution id also in the task table, it is foreign key so it is not unique here
+            COLUMN_INSTITUTION_ID + " INTEGER, " + // institution id also in the task table, it is foreign key so it is not unique here
             COLUMN_TASK_VISITED_DATE + " TEXT, " +
             COLUMN_TASK_VISITED_TIME + " TEXT, " +
             COLUMN_TASK_NOTE + " TEXT, " +
@@ -91,12 +88,12 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean saveNewInstitutionData(String instId, String instName, String instAddress, String authoName,
+    // ok
+    public boolean saveNewInstitutionData(String instName, String instAddress, String authoName,
                                           String authoDesignation, String mobileNo, String stuAmount) {
 
         SQLiteDatabase dbe = this.getWritableDatabase(); // Open db as writable mode
         ContentValues values = new ContentValues();
-        values.put(COLUMN_INSTITUTION_ID, instId);
         values.put(COLUMN_INSTITUTION_NAME, instName);
         values.put(COLUMN_INSTITUTION_ADDRESS, instAddress);
         values.put(COLUMN_INSTITUTION_AUTHORITY_NAME, authoName);
@@ -117,7 +114,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @return List
+     * ok
      */
     public List<String> getAllInstName() { // to spinner
         List<String> instName = new ArrayList<String>();
@@ -145,7 +142,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @return Cursor
+     * ok
      */
     public Cursor getAllInstitution(String instName) { // to textView
 
@@ -160,30 +157,11 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
 
+    //
     public boolean saveTaskData(String instName, String vDate, String vTime, String note, String fDate, String fTime) {
 
-        /**
-         * here institution id need to also save, which will not shown on new task page, so need to get id first from the inst name
-         */
-
-        // get instId from instName
-        List<String> instGetId = new ArrayList<>();
-
-        // Select All Query
-        String selectQuery = "SELECT " + COLUMN_INSTITUTION_ID + " FROM " + TABLE_INSTITUTION + " WHERE " + COLUMN_INSTITUTION_NAME + " = '" + instName + "'";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                instGetId.add(cursor.getString(0));
-            } while (cursor.moveToNext());
-        }
-
-        String collectedId = instGetId.get(0);
-
+        // get id from name
+        String collectedId = getIdByNameFromInstitutionTable(instName);
 
         // insert data to task table
         SQLiteDatabase dbi = this.getWritableDatabase(); // Open db as writable mode
@@ -210,7 +188,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @return List
+     * todo
      */
     public Cursor getAllTask(String instName) { // task to generate tasks table (return cursor for easy implementation of data in a table)
         String stringId = ""; // in a method it should initialized first
@@ -245,7 +223,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public Cursor getAllFollowupDateTime(String timeCalendar) { // task to generate tasks table (return cursor for easy implementation of data in a table)
 
         // get all tasks for today
-//        String getTodaysTask = "SELECT * FROM " + TABLE_TASK;
         String getTodaysTask = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_FOLLOWUP_DATE + "='" + timeCalendar + "' ORDER BY " + COLUMN_TASK_FOLLOWUP_TIME + " ASC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(getTodaysTask, null);
@@ -255,10 +232,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     }
 
+    // todo
     public Cursor getInstNameForFollowupDateTime(String isntId) { // task to generate tasks table (return cursor for easy implementation of data in a table)
 
         // get all tasks for today
-//        String getTodaysTask = "SELECT * FROM " + TABLE_TASK;
         String getTodaysTask = "SELECT " + COLUMN_INSTITUTION_NAME + " FROM " + TABLE_INSTITUTION + " WHERE " + COLUMN_INSTITUTION_ID + "='" + isntId + "';";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(getTodaysTask, null);
@@ -268,7 +245,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     }
 
-    public long updateInstitution(String[] isntIdPrevious, String isntIdUpdate, String isntName, String isntAddress, String isntAuthority,
+
+    // ok
+    public long updateInstitution(String isntNamePrevious, String isntNameNew, String isntAddress, String isntAuthority,
                                   String isntDesig, String isntMobile, String isntStuAmount) {
 
         SQLiteDatabase dbb = this.getWritableDatabase(); // Open db as writable mode
@@ -276,33 +255,33 @@ public class MyDbHelper extends SQLiteOpenHelper {
         ContentValues valuesTask = new ContentValues();
 
         // FOR INSTITUTION TABLE
-        valuesInst.put(COLUMN_INSTITUTION_ID, isntIdUpdate);
-        valuesInst.put(COLUMN_INSTITUTION_NAME, isntName);
+
+        valuesInst.put(COLUMN_INSTITUTION_NAME, isntNameNew);
         valuesInst.put(COLUMN_INSTITUTION_ADDRESS, isntAddress);
         valuesInst.put(COLUMN_INSTITUTION_AUTHORITY_NAME, isntAuthority);
         valuesInst.put(COLUMN_INSTITUTION_DESIGNATION, isntDesig);
         valuesInst.put(COLUMN_INSTITUTION_MOBILE_NO, isntMobile);
         valuesInst.put(COLUMN_INSTITUTION_STUDENT_AMOUNT, isntStuAmount);
 
-        // FOR TASK TABLE
-        valuesTask.put(COLUMN_INSTITUTION_ID, isntIdUpdate);
-
+        // get id by name
+        String[] insId = {getIdByNameFromInstitutionTable(isntNamePrevious)};
 
         //  Update ON 2 RELATED TABLE
-        long rowAffected = dbb.update(TABLE_INSTITUTION, valuesInst, COLUMN_INSTITUTION_ID + " LIKE ?", isntIdPrevious);
-        long rowAffected2 = dbb.update(TABLE_TASK, valuesTask, COLUMN_INSTITUTION_ID + " LIKE ?", isntIdPrevious);
+        long rowAffected = dbb.update(TABLE_INSTITUTION, valuesInst, COLUMN_INSTITUTION_ID + " LIKE ?", insId);
 
         dbb.close();
 
-        return rowAffected + rowAffected2;
+        return rowAffected;
 
     }
 
-    public long deleteInstitute(String instId) {
+    // ok
+    public long deleteInstitute(String instName) {
 
         SQLiteDatabase dbi = this.getWritableDatabase(); // Open db as writable mode
 
-        String[] convert = {instId};
+        String id = getIdByNameFromInstitutionTable(instName);
+        String[] convert = {id};
 
         // DELETE ROW FROM 2 RELATED TABLE
         long deleteInst = dbi.delete(TABLE_INSTITUTION, COLUMN_INSTITUTION_ID + " LIKE ?", convert);
@@ -311,6 +290,25 @@ public class MyDbHelper extends SQLiteOpenHelper {
         dbi.close();
 
         return deleteInst + deleteTask;
+    }
+
+
+    public String getIdByNameFromInstitutionTable(String instName) {
+
+        String instId = null;
+
+        // get id first from institute name
+        String instIdGet = "SELECT * FROM " + TABLE_INSTITUTION + " WHERE " + COLUMN_INSTITUTION_NAME + "='" + instName + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cid = db.rawQuery(instIdGet, null);
+
+        while (cid.moveToNext()) {
+            int i = 0;
+            instId = cid.getString(i);
+            break;
+        }
+
+        return instId;
     }
 
 

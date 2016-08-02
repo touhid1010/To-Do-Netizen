@@ -11,8 +11,7 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
 
     MyDbHelper myDbHelper;
 
-    EditText editText_instId,
-            editText_instName,
+    EditText editText_instName,
             editText_instAddress,
             editText_instAuthorityName,
             editText_instAuthorityDesignation,
@@ -30,7 +29,7 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
 
         myDbHelper = new MyDbHelper(this);
 
-        editText_instId = (EditText) findViewById(R.id.editText_instId);
+
         editText_instName = (EditText) findViewById(R.id.editText_instName);
         editText_instAddress = (EditText) findViewById(R.id.editText_instAddress);
         editText_instAuthorityName = (EditText) findViewById(R.id.editText_instAuthorityName);
@@ -51,7 +50,6 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.button_saveInstitute:
 
-                String instId = editText_instId.getText().toString();
                 String name = editText_instName.getText().toString();
                 String address = editText_instAddress.getText().toString();
                 String authoName = editText_instAuthorityName.getText().toString();
@@ -59,23 +57,23 @@ public class NewInstitution extends AppCompatActivity implements View.OnClickLis
                 String mobile = editText_mobileNo.getText().toString();
                 String amount = editText_studentAmount.getText().toString();
 
-                if (instId.isEmpty() || name.isEmpty() || address.isEmpty() || mobile.isEmpty()) {
-                    Toast.makeText(NewInstitution.this, "ID, Name, Address and Mobile should not empty.", Toast.LENGTH_SHORT).show();
+                if (name.isEmpty() || address.isEmpty() || mobile.isEmpty()) {
+                    Toast.makeText(NewInstitution.this, "Name, Address and Mobile should not empty.", Toast.LENGTH_SHORT).show();
                 } else {
-                    boolean b = myDbHelper.saveNewInstitutionData(instId, name, address, authoName, desig, mobile, amount);
+                    boolean b = myDbHelper.saveNewInstitutionData(name, address, authoName, desig, mobile, amount);
                     if (b) {
                         Toast.makeText(NewInstitution.this, "Success!", Toast.LENGTH_SHORT).show();
 
                         // clear text from edit text
-                        editText_instId.getText().clear();
                         editText_instName.getText().clear();
                         editText_instAddress.getText().clear();
                         editText_instAuthorityName.getText().clear();
                         editText_instAuthorityDesignation.getText().clear();
                         editText_mobileNo.getText().clear();
                         editText_studentAmount.getText().clear();
+
                     } else {
-                        Toast.makeText(NewInstitution.this, "Data not inserted. ID may exists!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewInstitution.this, "Data not inserted.!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

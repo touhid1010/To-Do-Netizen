@@ -38,8 +38,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Spinner spinner_instituteName;
 
     Button button_showTask,
-//            button_newTask,
-            button_instDetails;
+    //            button_newTask,
+    button_instDetails;
 
     TextView textView_home_title,
             textView_followupListTitle;
@@ -103,7 +103,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         getFollowUpTimes();
 
         getAllInstName();
-
 
 
     } // end of onCreate
@@ -253,16 +252,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         myDbHelper = new MyDbHelper(getApplicationContext());
         Cursor cursorTask = myDbHelper.getAllFollowupDateTime(date);
 
-
         if (cursorTask.getCount() > 0) {
 
             // set title first
-
             textView_followupListTitle.setText("Today's Schedule (" + date.toString() + ")");
 
-
             // using table layout
-
             TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_todaysFollowupList);
 
             // clear previous views from linearLayout
@@ -278,9 +273,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        tv0.setGravity(Gravity.CENTER);
 //        tbrow0.addView(tv0);
 
-            // visited Date and time
+
+            // INST NAME
             TextView tv1 = new TextView(this);
-            tv1.setText(" Inst.\nName/ID ");
+            tv1.setText(" Inst. Name ");
             tv1.setPadding(10, 10, 10, 10);
             tv1.setTextColor(Color.WHITE);
             tv1.setGravity(Gravity.CENTER);
@@ -324,14 +320,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            tableRow.addView(textView_sn);
 
-                // Inst. Name and ID (get name from inst table)
+                // Inst. Name (get name from inst table)
                 Cursor c = myDbHelper.getInstNameForFollowupDateTime(cursorTask.getString(i)); // passed id as argument
                 String sName = "";
                 while (c.moveToNext()) {
                     sName = c.getString(0);
                 }
                 TextView textView_name = new TextView(this);
-                textView_name.setText(" " + sName + "\n" + cursorTask.getString(i) + " ");
+                textView_name.setText(" " + sName + " ");
                 i++;
                 i++;
                 textView_name.setTextColor(Color.BLACK);
@@ -363,13 +359,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     tableRow.setBackgroundColor(0xFFCCCCCC);
                     rowColor = false;
                 } else {
-
                     rowColor = true;
                 }
 
                 // add the row on the table
                 tableLayout.addView(tableRow);
-
             }
         } else {
             textView_followupListTitle.setText("Today is: " + date.toString() + "\nYou have no schedule today!");

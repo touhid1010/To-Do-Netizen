@@ -20,7 +20,6 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
             linearLayout_editPart;
 
     TextView textView_instName_details,
-            textView_instId,
             textView_instName,
             textView_instAddress,
             textView_instAuthorityName,
@@ -28,8 +27,7 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
             textView_mobileNo,
             textView_studentAmount;
 
-    EditText editText_instId,
-            editText_instName,
+    EditText editText_instName,
             editText_instAddress,
             editText_instAuthorityName,
             editText_instAuthorityDesignation,
@@ -60,7 +58,6 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
 
         // TextView
         textView_instName_details = (TextView) findViewById(R.id.textView_instName_details);
-        textView_instId = (TextView) findViewById(R.id.textView_instId);
         textView_instName = (TextView) findViewById(R.id.textView_instName);
         textView_instAddress = (TextView) findViewById(R.id.textView_instAddress);
         textView_instAuthorityName = (TextView) findViewById(R.id.textView_instAuthorityName);
@@ -69,7 +66,6 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
         textView_studentAmount = (TextView) findViewById(R.id.textView_studentAmount);
 
         // EditText
-        editText_instId = (EditText) findViewById(R.id.editText_instId);
         editText_instName = (EditText) findViewById(R.id.editText_instName);
         editText_instAddress = (EditText) findViewById(R.id.editText_instAddress);
         editText_instAuthorityName = (EditText) findViewById(R.id.editText_instAuthorityName);
@@ -104,7 +100,7 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
 
         while (cursorInstInfo.moveToNext()) {
             int i = 0;
-            textView_instId.setText(cursorInstInfo.getString(i));
+
             i++;
             textView_instName.setText(cursorInstInfo.getString(i));
             i++;
@@ -134,7 +130,7 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
                 linearLayout_editPart.setVisibility(View.VISIBLE);
 
                 // get from textView and set to EditText
-                editText_instId.setText(textView_instId.getText());
+
                 editText_instName.setText(textView_instName.getText());
                 editText_instAddress.setText(textView_instAddress.getText());
                 editText_instAuthorityName.setText(textView_instAuthorityName.getText());
@@ -154,29 +150,28 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
 
             case R.id.button_updateInstitute:
 
-                String[] isntIdPrevious = {textView_instId.getText().toString()};
-                String isntIdUpdate = editText_instId.getText().toString();
-                String isntName = editText_instName.getText().toString();
+                String isntNamePrevious = textView_instName.getText().toString();
+                String isntNameNew = editText_instName.getText().toString();
                 String isntAddress = editText_instAddress.getText().toString();
                 String isntAuthority = editText_instAuthorityName.getText().toString();
                 String isntDesig = editText_instAuthorityDesignation.getText().toString();
                 String isntMobile = editText_mobileNo.getText().toString();
                 String isntStuAmount = editText_studentAmount.getText().toString();
 
-                long update = myDbHelper.updateInstitution(isntIdPrevious, isntIdUpdate, isntName, isntAddress, isntAuthority,
+                long update = myDbHelper.updateInstitution(isntNamePrevious, isntNameNew, isntAddress, isntAuthority,
                         isntDesig, isntMobile, isntStuAmount); // passed previous id, db will change indtId from both table
 
                 if (update > 0) {
                     Toast.makeText(ViewInstitutionDetails.this, "Successful update! " + update + " row.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(ViewInstitutionDetails.this, "Error, Try another id or name.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ViewInstitutionDetails.this, "Error, Try another name.", Toast.LENGTH_LONG).show();
                 }
 
                 break;
 
             case R.id.button_deleteInstitute:
 
-                long deletedRow = myDbHelper.deleteInstitute(textView_instId.getText().toString());
+                long deletedRow = myDbHelper.deleteInstitute(textView_instName.getText().toString());
 
                 if (deletedRow > 0) {
                     Toast.makeText(ViewInstitutionDetails.this, "Deleted " + deletedRow + " row.", Toast.LENGTH_LONG).show();

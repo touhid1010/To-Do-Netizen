@@ -43,7 +43,7 @@ public class AddTask extends AppCompatActivity implements View.OnClickListener {
     Calendar calendar_Date2;
     OnDateSetListener dateSetListener_Date;
     OnDateSetListener dateSetListener_Date2;
-    OnTimeSetListener timeSetListener;
+
 
     Calendar mcurrentTime;
     Calendar mcurrentTime2;
