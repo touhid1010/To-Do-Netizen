@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Spinner spinner_instituteName;
 
     Button button_showTask,
-            button_newTask,
+//            button_newTask,
             button_instDetails;
 
     TextView textView_home_title,
@@ -76,10 +76,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         spinner_instituteName = (Spinner) findViewById(R.id.spinner_instituteName);
 
         button_showTask = (Button) findViewById(R.id.button_showTask);
-        button_newTask = (Button) findViewById(R.id.button_newTask);
+//        button_newTask = (Button) findViewById(R.id.button_newTask);
         button_instDetails = (Button) findViewById(R.id.button_instDetails);
         button_showTask.setOnClickListener(this);
-        button_newTask.setOnClickListener(this);
+//        button_newTask.setOnClickListener(this);
         button_instDetails.setOnClickListener(this);
 
         textView_home_title = (TextView) findViewById(R.id.textView_home_title);
@@ -105,6 +105,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         getAllInstName();
 
 
+
     } // end of onCreate
 
 
@@ -118,11 +119,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
 
-            case R.id.button_newTask:
-                Intent in = new Intent(getApplicationContext(), AddTask.class);
-                in.putExtra(HOME_TO_VIEWTASKLIST_KEY, spinner_instituteName.getSelectedItem().toString());
-                startActivity(in);
-                break;
+//            case R.id.button_newTask:
+//                Intent in = new Intent(getApplicationContext(), AddTask.class);
+//                in.putExtra(HOME_TO_VIEWTASKLIST_KEY, spinner_instituteName.getSelectedItem().toString());
+//                startActivity(in);
+//                break;
 
             case R.id.button_instDetails:
 
@@ -133,12 +134,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.fab_newInstitution:
+
                 startActivity(new Intent(this, NewInstitution.class));
+
                 break;
 
             case R.id.fab_logout:
+
                 sessionManager.logoutUser();
                 finish();
+
                 break;
 
         }

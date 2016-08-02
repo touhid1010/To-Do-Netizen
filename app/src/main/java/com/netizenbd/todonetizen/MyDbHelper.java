@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.Editable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -143,6 +144,21 @@ public class MyDbHelper extends SQLiteOpenHelper {
         return instName;
     }
 
+    /**
+     * @return Cursor
+     */
+    public Cursor getAllInstitution(String instName) { // to textView
+
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + TABLE_INSTITUTION + " WHERE " + COLUMN_INSTITUTION_NAME + "='" + instName + "'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // returning all data of institution
+        return cursor;
+    }
+
 
     public boolean saveTaskData(String instName, String vDate, String vTime, String note, String fDate, String fTime) {
 
@@ -230,7 +246,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
         // get all tasks for today
 //        String getTodaysTask = "SELECT * FROM " + TABLE_TASK;
-        String getTodaysTask = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_FOLLOWUP_DATE + "='" + timeCalendar + "' ORDER BY "+COLUMN_TASK_FOLLOWUP_TIME+" ASC";
+        String getTodaysTask = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_FOLLOWUP_DATE + "='" + timeCalendar + "' ORDER BY " + COLUMN_TASK_FOLLOWUP_TIME + " ASC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(getTodaysTask, null);
 
@@ -251,5 +267,51 @@ public class MyDbHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    public long updateInstitution(String[] isntIdPrevious, String isntIdUpdate, String isntName, String isntAddress, String isntAuthority,
+                                  String isntDesig, String isntMobile, String isntStuAmount) {
+
+        SQLiteDatabase dbb = this.getWritableDatabase(); // Open db as writable mode
+        ContentValues valuesInst = new ContentValues();
+        ContentValues valuesTask = new ContentValues();
+
+        // FOR INSTITUTION TABLE
+        valuesInst.put(COLUMN_INSTITUTION_ID, isntIdUpdate);
+        valuesInst.put(COLUMN_INSTITUTION_NAME, isntName);
+        valuesInst.put(COLUMN_INSTITUTION_ADDRESS, isntAddress);
+        valuesInst.put(COLUMN_INSTITUTION_AUTHORITY_NAME, isntAuthority);
+        valuesInst.put(COLUMN_INSTITUTION_DESIGNATION, isntDesig);
+        valuesInst.put(COLUMN_INSTITUTION_MOBILE_NO, isntMobile);
+        valuesInst.put(COLUMN_INSTITUTION_STUDENT_AMOUNT, isntStuAmount);
+
+        // FOR TASK TABLE
+        valuesTask.put(COLUMN_INSTITUTION_ID, isntIdUpdate);
+
+
+        //  Update ON 2 RELATED TABLE
+        long rowAffected = dbb.update(TABLE_INSTITUTION, valuesInst, COLUMN_INSTITUTION_ID + " LIKE ?", isntIdPrevious);
+        long rowAffected2 = dbb.update(TABLE_TASK, valuesTask, COLUMN_INSTITUTION_ID + " LIKE ?", isntIdPrevious);
+
+        dbb.close();
+
+        return rowAffected + rowAffected2;
+
+    }
+
+    public long deleteInstitute(String instId) {
+
+        SQLiteDatabase dbi = this.getWritableDatabase(); // Open db as writable mode
+
+        String[] convert = {instId};
+
+        // DELETE ROW FROM 2 RELATED TABLE
+        long deleteInst = dbi.delete(TABLE_INSTITUTION, COLUMN_INSTITUTION_ID + " LIKE ?", convert);
+        long deleteTask = dbi.delete(TABLE_TASK, COLUMN_INSTITUTION_ID + " LIKE ?", convert);
+
+        dbi.close();
+
+        return deleteInst + deleteTask;
+    }
+
 
 }

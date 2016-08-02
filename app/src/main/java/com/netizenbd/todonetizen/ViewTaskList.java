@@ -76,7 +76,6 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_main);
 
-
         // clear previous views from linearLayout
         tableLayout.removeAllViews();
 
