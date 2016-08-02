@@ -1,12 +1,10 @@
 package com.netizenbd.todonetizen;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +38,7 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
             button_deleteInstitute;
 
     MyDbHelper myDbHelper;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,16 +170,29 @@ public class ViewInstitutionDetails extends AppCompatActivity implements View.On
 
             case R.id.button_deleteInstitute:
 
-                long deletedRow = myDbHelper.deleteInstitute(textView_instName.getText().toString());
+                // Delete with confirmation alert dialog builder
+                builder = new AlertDialog.Builder(ViewInstitutionDetails.this);
+                builder.setMessage("Do you really want to delete " + textView_instName.getText().toString() + "?");
+                builder.setNegativeButton("No", null);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        long deletedRow = myDbHelper.deleteInstitute(textView_instName.getText().toString());
 
-                if (deletedRow > 0) {
-                    Toast.makeText(ViewInstitutionDetails.this, "Deleted " + deletedRow + " row.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ViewInstitutionDetails.this, "Error.", Toast.LENGTH_LONG).show();
-                }
+                        if (deletedRow > 0) {
+                            Toast.makeText(ViewInstitutionDetails.this, "Deleted " + deletedRow + " row.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(ViewInstitutionDetails.this, "Error.", Toast.LENGTH_LONG).show();
+                        }
 
-                // finish activity after delete
-                finish();
+                        // finish activity after delete
+                        finish();
+                    }
+                });
+                builder.create().show();
+
+
+
 
                 break;
         }
