@@ -4,4 +4,17 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
+    <!--floating label of editText-->
+    <color name="textColorHint">#6666cf</color>
+    <color name="floatHighlight">#ffffff</color>
+    <color name="colorControlNormal">#6067ce</color>
+    <color name="colorControlActivated">#ffffff</color>
+    <color name="textColor">#ffffff</color>
+
+    <!--floating label of editText-->
+    <color name="buttonAccent">#4e4eb9</color>
+    <color name="buttonNormal">#41419c</color>
+
+
 </resources>
