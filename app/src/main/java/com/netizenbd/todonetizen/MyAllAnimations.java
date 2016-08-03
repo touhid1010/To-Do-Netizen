@@ -25,7 +25,7 @@ public class MyAllAnimations {
             public void onAnimationEnd(Animation animation) {
                 // animation to highlight new institution
                 if (view.getVisibility() == View.VISIBLE) {
-                    Animation shake = AnimationUtils.loadAnimation(context, R.anim.animation_floationg_button_if_no_institution);
+                    Animation shake = AnimationUtils.loadAnimation(context, R.anim.animation_floationg_button_shake);
                     floatingActionBar.startAnimation(shake);
                 }
             }
@@ -46,10 +46,15 @@ public class MyAllAnimations {
         floatingActionBar.startAnimation(shake);
     }
 
-//    public void floatingActionButtonIfNoInstitution(Context context, View floatingActionBar) {
-//        Animation shake = AnimationUtils.loadAnimation(context, R.anim.animation_floationg_button_if_no_institution);
-//        floatingActionBar.startAnimation(shake);
-//    }
+    public void floatingActionButtonShake(Context context, View floatingActionBar, boolean trueFalse) {
+        Animation shake = AnimationUtils.loadAnimation(context, R.anim.animation_floationg_button_shake);
+        if (trueFalse) {
+            floatingActionBar.startAnimation(shake);
+        } else {
+            floatingActionBar.clearAnimation();
+        }
+
+    }
 
 
 }

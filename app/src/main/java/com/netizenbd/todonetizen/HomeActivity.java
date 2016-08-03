@@ -21,7 +21,6 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -124,7 +123,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             // animation to highlight new institution
             if (textView_home_title.getVisibility() == View.VISIBLE) {
-                Animation shake = AnimationUtils.loadAnimation(this, R.anim.animation_floationg_button_if_no_institution);
+                Animation shake = AnimationUtils.loadAnimation(this, R.anim.animation_floationg_button_shake);
                 fab_newInstitution.startAnimation(shake);
             }
 

@@ -29,6 +29,7 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
 
     MyAllAnimations myAllAnimations;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +76,7 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestart() {
         myReportGenerate();
+
         super.onRestart();
     }
 
@@ -83,6 +85,10 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
         Cursor cursor = myDbHelper.getAllTask(textView_viewTask.getText().toString());
 
         if (cursor.getCount() > 0) {
+
+            textView_empty_task_message.setVisibility(View.GONE);
+
+            myAllAnimations.floatingActionButtonShake(getApplicationContext(), fab_newTask, false);
 
 
             // using table layout
@@ -199,6 +205,8 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             }
         } else {
             textView_empty_task_message.setVisibility(View.VISIBLE);
+
+            myAllAnimations.floatingActionButtonShake(getApplicationContext(), fab_newTask, true);
         }
 
 
