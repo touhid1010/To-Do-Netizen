@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,6 +51,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     MyAllAnimations myAllAnimations;
 
     public final static String HOME_TO_VIEWTASKLIST_KEY = "spinnerItem";
+    public final static String STOP_RESTART_ANIMATION = "stopAnimation";
 
 
     @Override
@@ -107,21 +111,35 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // animations
         myAllAnimations = new MyAllAnimations();
 
-        // animation for appearance
-        myAllAnimations.floatingActionButtonAppearance(this, fab_logout);
-        myAllAnimations.floatingActionButtonAppearance(this, fab_newInstitution);
 
-        // animation to highlight new institution
-//        if (textView_home_title.getVisibility() == View.VISIBLE) {
-//            myAllAnimations.floatingActionButtonIfNoInstitution(this, fab_newInstitution);
-//        }
+        /**
+         * passed intent extra from onRestart from this activity
+         */
+        if (getIntent().getStringExtra(STOP_RESTART_ANIMATION) == null) {
+            // animation for appearance at first time open the activity
+            myAllAnimations.floatingActionButtonsAppearance_middleToTop(this, fab_logout);
+//            myAllAnimations.floatingActionButtonsAppearance_middleToTop(this, fab_logout, false);
+            myAllAnimations.floatingActionButtonsAppearance_middleToBottom(this, fab_newInstitution, textView_home_title);
+
+        } else {
+            // animation to highlight new institution
+            if (textView_home_title.getVisibility() == View.VISIBLE) {
+                Animation shake = AnimationUtils.loadAnimation(this, R.anim.animation_floationg_button_if_no_institution);
+                fab_newInstitution.startAnimation(shake);
+            }
+
+        }
+
+
+
+
+
 
 
 
 
 
     } // end of onCreate
-
 
 
     @Override
@@ -191,7 +209,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             scrollView_home_main_button.setVisibility(View.GONE);
 
 
-
         } else {  // else section is normal section to load data from db to spinner, if section can be avoided if no need to insert data to db
 
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -205,8 +222,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             // Change visibility of title message part
             textView_home_title.setVisibility(View.GONE);
             scrollView_home_main_button.setVisibility(View.VISIBLE);
-
-
 
 
         }
@@ -229,7 +244,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestart() {
         finish();
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        intent.putExtra(STOP_RESTART_ANIMATION, "stop_animate_again");
+        startActivity(intent);
+
         super.onRestart();
     }
 
@@ -386,14 +404,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 // add the row on the table
                 tableLayout.addView(tableRow);
             }
+
         } else {
             textView_followupListTitle.setText("Today is: " + date.toString() + "\nYou have no schedule today!");
         }
 
 
     }
-
-
 
 
 }
