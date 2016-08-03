@@ -1,17 +1,13 @@
 package com.netizenbd.todonetizen;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,11 +19,9 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -41,12 +35,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     //            button_newTask,
     button_instDetails;
 
+    FloatingActionButton fab_newInstitution,
+            fab_logout;
+
     TextView textView_home_title,
             textView_followupListTitle;
 
     ScrollView scrollView_home_main_button;
 
     MyDbHelper myDbHelper;
+
+    MyAllAnimations myAllAnimations;
 
     public final static String HOME_TO_VIEWTASKLIST_KEY = "spinnerItem";
 
@@ -58,8 +57,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab_newInstitution = (FloatingActionButton) findViewById(R.id.fab_newInstitution);
-        FloatingActionButton fab_logout = (FloatingActionButton) findViewById(R.id.fab_logout);
+        fab_newInstitution = (FloatingActionButton) findViewById(R.id.fab_newInstitution);
+        fab_logout = (FloatingActionButton) findViewById(R.id.fab_logout);
         fab_newInstitution.setOnClickListener(this);
         fab_logout.setOnClickListener(this);
 
@@ -105,7 +104,24 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         getAllInstName();
 
 
+        // animations
+        myAllAnimations = new MyAllAnimations();
+
+        // animation for appearance
+        myAllAnimations.floatingActionButtonAppearance(this, fab_logout);
+        myAllAnimations.floatingActionButtonAppearance(this, fab_newInstitution);
+
+        // animation to highlight new institution
+//        if (textView_home_title.getVisibility() == View.VISIBLE) {
+//            myAllAnimations.floatingActionButtonIfNoInstitution(this, fab_newInstitution);
+//        }
+
+
+
+
+
     } // end of onCreate
+
 
 
     @Override
@@ -174,6 +190,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             textView_home_title.setVisibility(View.VISIBLE);
             scrollView_home_main_button.setVisibility(View.GONE);
 
+
+
         } else {  // else section is normal section to load data from db to spinner, if section can be avoided if no need to insert data to db
 
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -187,6 +205,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             // Change visibility of title message part
             textView_home_title.setVisibility(View.GONE);
             scrollView_home_main_button.setVisibility(View.VISIBLE);
+
+
+
 
         }
 
@@ -371,5 +392,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+
 
 }
