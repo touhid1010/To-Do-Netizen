@@ -21,6 +21,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <!--if no data then it will show-->
+
+    <TextView
+        android:id="@+id/textView_empty_task_message"
+        android:text="You don't have any task for this institution!\nPlease add task from the below button."
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:layout_height="wrap_content" />
+
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,7 +42,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TableLayout
                 android:id="@+id/tableLayout_main"
@@ -51,14 +65,14 @@
 
 
 
-
-
-
-
-
-
         </LinearLayout>
 
     </ScrollView>
+
+
+
+
+
+
 
 </LinearLayout>
