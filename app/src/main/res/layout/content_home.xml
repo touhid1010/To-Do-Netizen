@@ -1,100 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_home_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:id="@+id/linearLayout_home_main"
-    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.netizenbd.todonetizen.HomeActivity"
     tools:showIn="@layout/activity_home">
 
-    <TextView
-        android:id="@+id/textView_home_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="You need to add new Institution.\nTap the bottom button to add new institution.\nTap the upper button to logout."
-        android:textSize="18sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView_home_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:text="You need to add new Institution.\nTap the bottom button to add new institution.\nTap the upper button to logout."-->
+        <!--android:textSize="18sp"-->
+        <!--android:visibility="gone" />-->
 
     <!--
     in java: visibility gone of scrollView part if no institution found.
              visibility gone of title TextView if institution found.
     -->
 
-    <ScrollView
-        android:id="@+id/scrollView_home_main_button"
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollView_home_main_button"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:visibility="gone">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical">-->
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/textView_followupListTitle"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="#dfdfdf"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:padding="10dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="Today's Followup Time"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textSize="18sp" />&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<TableLayout&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/tableLayout_todaysFollowupList"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:gravity="center">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;&lt;!&ndash;Make dynamic table from java&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</TableLayout>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<Spinner&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/spinner_instituteName"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="#aebae1"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:minHeight="15dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:minWidth="200dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:padding="12dp" />&ndash;&gt;-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--&lt;!&ndash;<Button&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/button_showTask"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="Task" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<Button&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/button_newTask"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="New Task" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<Button&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/button_instDetails"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="Details" />&ndash;&gt;-->
+
+            <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</ScrollView>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/viewA"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:background="#2F3192"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView_home_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="You need to add new Institution."
+                android:textSize="18sp" />
+
+            <ScrollView
+                android:id="@+id/scrollView_home_main_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:minWidth="200dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_weight=".2"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".6"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:id="@+id/spinner_instituteName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="#aebae1"
+                                android:gravity="center"
+                                android:minHeight="20dp"
+                                android:minWidth="200dp"
+                                android:padding="12dp" />
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_weight=".2"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_weight=".2"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_weight=".6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/button_showTask"
+                                style="@style/MyMaterialButton"
+                                android:layout_width="0dp"
+                                android:layout_weight=".5"
+                                android:layout_height="wrap_content"
+                                android:text="Task"
+                                android:textColor="@android:color/white" />
+
+                            <Button
+                                android:id="@+id/button_instDetails"
+                                style="@style/MyMaterialButton"
+                                android:layout_weight=".5"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Details"
+                                android:textColor="@android:color/white" />
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_weight=".2"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/viewB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:gravity="center"
+            android:background="#7D7EC4"
+            android:orientation="vertical" >
+
+            <TextView
                 android:id="@+id/textView_followupListTitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#dfdfdf"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="#d2d2d2"
                 android:padding="10dp"
                 android:text="Today's Followup Time"
                 android:textSize="18sp" />
 
-            <TableLayout
-                android:id="@+id/tableLayout_todaysFollowupList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center">
-
-                <!--Make dynamic table from java-->
-
-            </TableLayout>
-
-            <Spinner
-                android:id="@+id/spinner_instituteName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#aebae1"
-                android:minHeight="15dp"
-                android:minWidth="200dp"
-                android:padding="12dp" />
-
-            <LinearLayout
+            <ScrollView
+                android:id="@+id/scrollView_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/button_showTask"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Task" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <!--<Button-->
-                    <!--android:id="@+id/button_newTask"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="New Task" />-->
+                    <TableLayout
+                        android:id="@+id/tableLayout_todaysFollowupList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center">
 
-                <Button
-                    android:id="@+id/button_instDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Details" />
+                        <!--Make dynamic table from java-->
 
-            </LinearLayout>
+                    </TableLayout>
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+
+
+
 
         </LinearLayout>
 
-    </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_newInstitution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_action_add_institute"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="bottom|right|end" />
+
+</android.support.design.widget.CoordinatorLayout>
+
+    <!--
+        Best practice:
+
+        Add compile 'com.android.support:design:23.1.1' to gradle file
+        Use CoordinatorLayout as root view.
+        Add layout_anchorto the FAB and set it to the top view
+        Add layout_anchorGravity to the FAB and set it to: bottom|right|end
+    -->

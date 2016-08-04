@@ -16,5 +16,5 @@
     <color name="buttonAccent">#4e4eb9</color>
     <color name="buttonNormal">#41419c</color>
 
-
+    <color name="my_spinner_text_color">#313131</color>
 </resources>

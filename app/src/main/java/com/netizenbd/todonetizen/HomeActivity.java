@@ -22,6 +22,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +32,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     MySessionManager sessionManager;
+
 
     Spinner spinner_instituteName;
 
@@ -43,7 +46,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     TextView textView_home_title,
             textView_followupListTitle;
 
-    ScrollView scrollView_home_main_button;
+    ScrollView scrollView_home_main_button,
+            scrollView_table;
 
     MyDbHelper myDbHelper;
 
@@ -61,9 +65,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        setSupportActionBar(toolbar);
 
         fab_newInstitution = (FloatingActionButton) findViewById(R.id.fab_newInstitution);
-        fab_logout = (FloatingActionButton) findViewById(R.id.fab_logout);
+//        fab_logout = (FloatingActionButton) findViewById(R.id.fab_logout);
         fab_newInstitution.setOnClickListener(this);
-        fab_logout.setOnClickListener(this);
+//        fab_logout.setOnClickListener(this);
 
 
         myDbHelper = new MyDbHelper(getApplicationContext());
@@ -89,6 +93,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
         scrollView_home_main_button = (ScrollView) findViewById(R.id.scrollView_home_main_button);
+        scrollView_table = (ScrollView) findViewById(R.id.scrollView_table);
 
 
 //        ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this,
@@ -116,7 +121,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
          */
         if (getIntent().getStringExtra(STOP_RESTART_ANIMATION) == null) {
             // animation for appearance at first time open the activity
-            myAllAnimations.floatingActionButtonsAppearance_middleToTop(this, fab_logout);
+//            myAllAnimations.floatingActionButtonsAppearance_middleToTop(this, fab_logout);
 //            myAllAnimations.floatingActionButtonsAppearance_middleToTop(this, fab_logout, false);
             myAllAnimations.floatingActionButtonsAppearance_middleToBottom(this, fab_newInstitution, textView_home_title);
 
@@ -170,13 +175,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, NewInstitution.class));
 
                 break;
-
-            case R.id.fab_logout:
-
-                sessionManager.logoutUser();
-                finish();
-
-                break;
+//
+//            case R.id.fab_logout:
+//
+//                sessionManager.logoutUser();
+//                finish();
+//
+//                break;
 
         }
     }
@@ -258,18 +263,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 case KeyEvent.KEYCODE_BACK:
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("Want to exit without Logout?");
+                    builder.setMessage("Want to exit?");
 
-                    builder.setNegativeButton("No", null);
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("Logout & Exit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sessionManager.logoutUser();
+                            finish();
+                        }
+                    });
+                    builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // end activity
                             finish();
-
                         }
                     });
-
 
                     AlertDialog dialog = builder.show();
                     TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -293,7 +302,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if (cursorTask.getCount() > 0) {
 
             // set title first
-            textView_followupListTitle.setText("Today's Schedule (" + date.toString() + ")");
+            textView_followupListTitle.setText("Today's Schedule\n(" + date.toString() + ")");
 
             // using table layout
             TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_todaysFollowupList);
@@ -406,6 +415,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
             textView_followupListTitle.setText("Today is: " + date.toString() + "\nYou have no schedule today!");
+
+            // to make text (textView_followupListTitle) center need to scrollview GONE
+            scrollView_table.setVisibility(View.GONE);
         }
 
 
