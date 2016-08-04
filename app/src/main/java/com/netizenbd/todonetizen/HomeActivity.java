@@ -321,34 +321,34 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        tbrow0.addView(tv0);
 
 
-            // INST NAME
-            TextView tv1 = new TextView(this);
-            tv1.setText(" Inst. Name ");
-            tv1.setPadding(10, 10, 10, 10);
-            tv1.setTextColor(Color.WHITE);
-            tv1.setGravity(Gravity.CENTER);
-            tbrow0.addView(tv1);
+//            // INST NAME
+//            TextView tv1 = new TextView(this);
+//            tv1.setText(" Inst. Name ");
+//            tv1.setPadding(10, 10, 10, 10);
+//            tv1.setTextColor(Color.WHITE);
+//            tv1.setGravity(Gravity.CENTER);
+//            tbrow0.addView(tv1);
 
 
-            // note
-            TextView tv2 = new TextView(this);
-            tv2.setText(" Note ");
-            tv2.setPadding(10, 10, 10, 10);
-            tv2.setTextColor(Color.WHITE);
-            tv2.setGravity(Gravity.CENTER);
-            tbrow0.addView(tv2);
+//            // note
+//            TextView tv2 = new TextView(this);
+//            tv2.setText(" Note ");
+//            tv2.setPadding(10, 10, 10, 10);
+//            tv2.setTextColor(Color.WHITE);
+//            tv2.setGravity(Gravity.CENTER);
+//            tbrow0.addView(tv2);
 
 
-            // following date and time
-            TextView tv3 = new TextView(this);
-            tv3.setText(" Followup Time ");
-            tv3.setPadding(10, 10, 10, 10);
-            tv3.setTextColor(Color.WHITE);
-            tv3.setGravity(Gravity.CENTER);
-            tbrow0.addView(tv3);
+//            // following date and time
+//            TextView tv3 = new TextView(this);
+//            tv3.setText(" Followup Time ");
+//            tv3.setPadding(10, 10, 10, 10);
+//            tv3.setTextColor(Color.WHITE);
+//            tv3.setGravity(Gravity.CENTER);
+//            tbrow0.addView(tv3);
 
-            tbrow0.setBackgroundColor(Color.GRAY);
-            tableLayout.addView(tbrow0);
+//            tbrow0.setBackgroundColor(Color.GRAY);
+//            tableLayout.addView(tbrow0);
 
             boolean rowColor = false;
             int j = 1;

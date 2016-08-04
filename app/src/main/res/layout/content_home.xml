@@ -10,6 +10,10 @@
     tools:context="com.netizenbd.todonetizen.HomeActivity"
     tools:showIn="@layout/activity_home">
 
+
+
+
+
     <!--<TextView-->
         <!--android:id="@+id/textView_home_title"-->
         <!--android:layout_width="match_parent"-->
@@ -241,10 +245,17 @@
                 android:text="Today's Followup Time"
                 android:textSize="18sp" />
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#3f41a7" />
+
             <ScrollView
                 android:id="@+id/scrollView_table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -261,6 +272,50 @@
                         <!--Make dynamic table from java-->
 
                     </TableLayout>
+
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:background="#3f41a7"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:text="Omuk School and College"
+                                android:padding="8dp"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:text="Sokale dekha korte hobe"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="#405bb4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:text="10:40 AM"
+                                android:gravity="center"
+                                android:textSize="17sp"
+                                android:padding="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+
+
+                    </FrameLayout>
 
                 </LinearLayout>
 
