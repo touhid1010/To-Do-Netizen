@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundMain"
+    android:padding="15dp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.netizenbd.todonetizen.ViewInstitutionDetails"
@@ -13,11 +15,12 @@
         android:id="@+id/textView_instName_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#d9d9d9"
+        android:background="@color/colorBackgroundTitle"
         android:gravity="center"
         android:padding="10dp"
         android:text="Institute Name"
-        android:textSize="18sp" />
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,7 +46,9 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="Inst. Name: "
-                        android:textSize="18sp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_instName"
@@ -51,6 +56,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text=""
+                        android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
 
@@ -65,7 +71,9 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="Address: "
-                        android:textSize="18sp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_instAddress"
@@ -73,6 +81,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text=""
+                        android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
 
@@ -87,7 +96,9 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="Authority Name: "
-                        android:textSize="18sp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_instAuthorityName"
@@ -95,6 +106,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text=""
+                        android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
 
@@ -109,7 +121,9 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="Designation: "
-                        android:textSize="18sp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_instAuthorityDesignation"
@@ -117,6 +131,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text=""
+                        android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
 
@@ -131,7 +146,9 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="Mobile No.: "
-                        android:textSize="18sp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_mobileNo"
@@ -139,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text=""
+                        android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
 
@@ -153,7 +171,9 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="Student Amount: "
-                        android:textSize="18sp" />
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_studentAmount"
@@ -161,6 +181,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text=""
+                        android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -173,10 +194,12 @@
 
                     <Button
                         android:id="@+id/button_editInstitute"
+                        style="@style/MyMaterialButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Edit" />
+                        android:text="Edit"
+                        android:textColor="@android:color/white" />
 
 
                 </LinearLayout>
@@ -190,150 +213,171 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Inst. Name: "
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/editText_instName"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz -123456789"
-                        android:hint="Institute Name" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/textLabel">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/editText_instName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz -123456789"
+                                android:hint="Institute Name"
+                                android:inputType="text"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textColorHighlight="@color/buttonNormal"
+                                android:textColorLink="@color/buttonNormal" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Address: "
-                        android:textSize="18sp" />
+                        </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/editText_instAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Institute Address" />
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:theme="@style/textLabel">
 
-                </LinearLayout>
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/editText_instAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Institute Address"
+                                android:inputType="text"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textColorHighlight="@color/buttonNormal"
+                                android:textColorLink="@color/buttonNormal" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        </android.support.design.widget.TextInputLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Authority Name: "
-                        android:textSize="18sp" />
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:theme="@style/textLabel">
 
-                    <EditText
-                        android:id="@+id/editText_instAuthorityName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Authority Name" />
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/editText_instAuthorityName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Authority Name"
+                                android:inputType="text"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textColorHighlight="@color/buttonNormal"
+                                android:textColorLink="@color/buttonNormal" />
 
-                </LinearLayout>
+                        </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:theme="@style/textLabel">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Designation: "
-                        android:textSize="18sp" />
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/editText_instAuthorityDesignation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Authority Designation"
+                                android:inputType="text"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textColorHighlight="@color/buttonNormal"
+                                android:textColorLink="@color/buttonNormal" />
 
-                    <EditText
-                        android:id="@+id/editText_instAuthorityDesignation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Authority Designation" />
+                        </android.support.design.widget.TextInputLayout>
 
-                </LinearLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:theme="@style/textLabel">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/editText_mobileNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Mobile No."
+                                android:inputType="phone"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textColorHighlight="@color/buttonNormal"
+                                android:textColorLink="@color/buttonNormal" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Mobile No.: "
-                        android:textSize="18sp" />
+                        </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/editText_mobileNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Mobile No."
-                        android:inputType="phone" />
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:theme="@style/textLabel">
 
-                </LinearLayout>
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/editText_studentAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Student amount"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:textColorHighlight="@color/buttonNormal"
+                                android:textColorLink="@color/buttonNormal" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        </android.support.design.widget.TextInputLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Student Amount: "
-                        android:textSize="18sp" />
 
-                    <EditText
-                        android:id="@+id/editText_studentAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Student amount"
-                        android:inputType="number" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
 
-                </LinearLayout>
+                            <Button
+                                android:id="@+id/button_cancelInstitute"
+                                style="@style/MyMaterialButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Cancel"
+                                android:textColor="@android:color/white" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
+                            <Button
+                                android:id="@+id/button_updateInstitute"
+                                style="@style/MyMaterialButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Update"
+                                android:textColor="@android:color/white" />
 
-                    <Button
-                        android:id="@+id/button_cancelInstitute"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Cancel" />
+                            <Button
+                                android:id="@+id/button_deleteInstitute"
+                                style="@style/MyMaterialButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Delete"
+                                android:textColor="@android:color/white" />
 
-                    <Button
-                        android:id="@+id/button_updateInstitute"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Update" />
+                        </LinearLayout>
 
-                    <Button
-                        android:id="@+id/button_deleteInstitute"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Delete" />
 
-                </LinearLayout>
+                    </LinearLayout>
+
+
+                </ScrollView>
+
 
             </LinearLayout>
 

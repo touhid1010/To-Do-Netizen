@@ -3,6 +3,7 @@ package com.netizenbd.todonetizen;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -105,7 +106,8 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             TextView tv0 = new TextView(this);
             tv0.setText("Sl.No. ");
             tv0.setPadding(10, 10, 10, 10);
-            tv0.setTextColor(Color.WHITE);
+            tv0.setTextColor(0xC0C0C0C0);
+            tv0.setTypeface(null, Typeface.BOLD);
             tv0.setGravity(Gravity.CENTER);
             tbrow0.addView(tv0);
 
@@ -114,7 +116,8 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             TextView tv1 = new TextView(this);
             tv1.setText(" Visited\nDate & Time ");
             tv1.setPadding(10, 10, 10, 10);
-            tv1.setTextColor(Color.WHITE);
+            tv1.setTextColor(0xC0C0C0C0);
+            tv1.setTypeface(null, Typeface.BOLD);
             tv1.setGravity(Gravity.CENTER);
             tbrow0.addView(tv1);
 
@@ -123,7 +126,8 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             TextView tv2 = new TextView(this);
             tv2.setText(" Note ");
             tv2.setPadding(10, 10, 10, 10);
-            tv2.setTextColor(Color.WHITE);
+            tv2.setTextColor(0xC0C0C0C0);
+            tv2.setTypeface(null, Typeface.BOLD);
             tv2.setGravity(Gravity.CENTER);
             tbrow0.addView(tv2);
 
@@ -132,11 +136,13 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             TextView tv3 = new TextView(this);
             tv3.setText(" Followup\nDate & Time ");
             tv3.setPadding(10, 10, 10, 10);
-            tv3.setTextColor(Color.WHITE);
+            tv3.setTextColor(0xC0C0C0C0);
+            tv3.setTypeface(null, Typeface.BOLD);
             tv3.setGravity(Gravity.CENTER);
             tbrow0.addView(tv3);
 
-            tbrow0.setBackgroundColor(Color.GRAY);
+            tbrow0.setBackgroundColor(0x292c89ff);
+
             tableLayout.addView(tbrow0);
 
             boolean rowColor = false;
@@ -154,7 +160,7 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
                 textView_sn.setText("" + j); // serial no is not related with database, it's just serial, here j is only for serial no
                 j++;
                 i++;
-                textView_sn.setTextColor(Color.BLACK);
+                textView_sn.setTextColor(0xDCDCDCDC);
                 textView_sn.setGravity(Gravity.CENTER);
 
                 tableRow.addView(textView_sn);
@@ -164,7 +170,7 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
                 textView_name.setText(" " + cursor.getString(i) + " \n" + cursor.getString(i + 1) + " ");
                 i++;
                 i++;
-                textView_name.setTextColor(Color.BLACK);
+                textView_name.setTextColor(0xDCDCDCDC);
                 textView_name.setGravity(Gravity.CENTER);
 
                 tableRow.addView(textView_name);
@@ -174,7 +180,7 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
                 TextView textView_phone = new TextView(this);
                 textView_phone.setText(" " + cursor.getString(i) + " ");
                 i++;
-                textView_phone.setTextColor(Color.BLACK);
+                textView_phone.setTextColor(0xDCDCDCDC);
                 textView_phone.setGravity(Gravity.CENTER);
 
                 tableRow.addView(textView_phone);
@@ -185,19 +191,21 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
                 textView_address.setText(" " + cursor.getString(i) + " \n" + cursor.getString(i + 1) + " ");
                 i++;
                 i++;
-                textView_address.setTextColor(Color.BLACK);
+                textView_address.setTextColor(0xDCDCDCDC);
                 textView_address.setGravity(Gravity.CENTER);
 
                 tableRow.addView(textView_address);
 
                 // set color background for table row after each row, starts from 2nd row
                 if (rowColor) {
-                    tableRow.setBackgroundColor(0xFFCCCCCC);
+                    tableRow.setBackgroundColor(0x292c8900);
                     rowColor = false;
                 } else {
 
                     rowColor = true;
                 }
+
+                tableRow.setPadding(0,10,0,10);
 
                 // add the row on the table
                 tableLayout.addView(tableRow);

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundMain"
+    android:padding="15dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.netizenbd.todonetizen.AddTask"
     tools:showIn="@layout/activity_add_task">
@@ -13,161 +15,150 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView_instName_addTask"
-                android:text="Institute Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@color/colorBackgroundTitle"
                 android:gravity="center"
-                android:textSize="20sp"
                 android:padding="15dp"
-                android:background="#b4b4b4"
-                android:textColor="#fff"
+                android:text="Institute Name"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:theme="@style/textLabel">
 
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Visited Date: "
-                    android:padding="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_visitedDate"
-                    android:inputType="date"
-                    android:focusable="false"
-                    android:hint="Year/Month/Day"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Visited Time: "
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="Visited Date"
+                    android:inputType="date"
                     android:padding="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColorHighlight="@color/buttonNormal"
+                    android:textColorLink="@color/buttonNormal" />
 
-                <EditText
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:theme="@style/textLabel">
+
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_visitedTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="Visited Time"
                     android:inputType="time"
-                    android:focusable="false"
-                    android:hint="Tap to select time"
+                    android:padding="10dp"
+                    android:textColorHighlight="@color/buttonNormal"
+                    android:textColorLink="@color/buttonNormal" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/textLabel">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editText_note"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top|left"
+                        android:hint="Note"
+                        android:inputType="textMultiLine"
+                        android:lines="5"
+                        android:padding="10dp"
+                        android:scrollbars="vertical"
+                        android:singleLine="true"
+                        android:textColorHighlight="@color/buttonNormal"
+                        android:textColorLink="@color/buttonNormal" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:text="Note: "
-                    android:padding="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
-                <EditText
-                    android:id="@+id/editText_note"
-                    android:inputType="textMultiLine"
-                    android:scrollbars="vertical"
-                    android:lines="5"
-                    android:gravity="top|left"
-                    android:hint="Your details note"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/textLabel">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editText_nextFollowupDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:hint="Followup Date"
+                        android:inputType="date"
+                        android:padding="10dp"
+                        android:textColorHighlight="@color/buttonNormal"
+                        android:textColorLink="@color/buttonNormal" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:theme="@style/textLabel">
 
-                <TextView
-                    android:text="Follow up Date: "
-                    android:padding="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/editText_nextFollowupDate"
-                    android:inputType="date"
-                    android:focusable="false"
-                    android:hint="Year/Month/Day"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Follow up Time: "
-                    android:padding="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_nextFollowupTime"
-                    android:inputType="time"
-                    android:hint="Tap to select time"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:layout_height="wrap_content" />
+                    android:hint="Followup Time"
+                    android:inputType="time"
+                    android:padding="10dp"
+                    android:textColorHighlight="@color/buttonNormal"
+                    android:textColorLink="@color/buttonNormal" />
 
-            </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
+
 
             <Button
                 android:id="@+id/button_save_addTask"
-                android:text="Save"
+                style="@style/MyMaterialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                android:text="Save"
+                android:textColor="@android:color/white" />
 
 
         </LinearLayout>

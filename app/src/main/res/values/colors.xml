@@ -3,10 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorBackgroundMain">#2E3192</color>
+    <color name="colorBackgroundTitle">#292c89</color>
 
 
     <!--floating label of editText-->
-    <color name="textColorHint">#6666cf</color>
+    <color name="textColorHint">#fc6666cf</color>
     <color name="floatHighlight">#ffffff</color>
     <color name="colorControlNormal">#6067ce</color>
     <color name="colorControlActivated">#ffffff</color>
