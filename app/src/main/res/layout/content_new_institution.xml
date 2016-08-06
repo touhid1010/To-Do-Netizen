@@ -48,7 +48,7 @@
                         android:id="@+id/editText_instName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyz -123456789"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz -123456789"
                         android:hint="Institute Name" />
 
                 </LinearLayout>
