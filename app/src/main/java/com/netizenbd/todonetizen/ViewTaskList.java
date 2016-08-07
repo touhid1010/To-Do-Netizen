@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,6 +31,8 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
     FloatingActionButton fab_newTask;
 
     MyAllAnimations myAllAnimations;
+
+    public final static String INTENT_MESSAGE_PASS_TASK_ID = "taskid";
 
 
     @Override
@@ -55,7 +59,6 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
         myReportGenerate();
 
 
-
     } // end of onCreate
 
     @Override
@@ -69,6 +72,14 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
 
                 break;
+
+            default: // work dynamic edit buttons
+                Intent intent = new Intent(getApplicationContext(), TaskEdit.class);
+                intent.putExtra(INTENT_MESSAGE_PASS_TASK_ID, v.getId());
+                intent.putExtra(HomeActivity.HOME_TO_VIEWTASKLIST_KEY, textView_viewTask.getText().toString());
+                startActivity(intent);
+
+
         }
 
     }
@@ -82,8 +93,12 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
     }
 
     private void myReportGenerate() {
+
         myDbHelper = new MyDbHelper(getApplicationContext());
         Cursor cursor = myDbHelper.getAllTask(textView_viewTask.getText().toString());
+
+        // using table layout
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_main);
 
         if (cursor.getCount() > 0) {
 
@@ -91,10 +106,6 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
 
             myAllAnimations.floatingActionButtonShake(getApplicationContext(), fab_newTask, false);
 
-
-            // using table layout
-
-            TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout_main);
 
             // clear previous views from linearLayout
             tableLayout.removeAllViews();
@@ -141,6 +152,17 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
             tv3.setGravity(Gravity.CENTER);
             tbrow0.addView(tv3);
 
+
+            // edit column
+            TextView tv4 = new TextView(this);
+            tv4.setText("         ");
+            tv4.setPadding(10, 10, 10, 40);
+            tv4.setTextColor(0xC0C0C0C0);
+            tv4.setBackgroundColor(getResources().getColor(R.color.colorBackgroundMain)); // to make this column invisible
+            tv4.setTypeface(null, Typeface.BOLD);
+            tv4.setGravity(Gravity.CENTER);
+            tbrow0.addView(tv4);
+
             tbrow0.setBackgroundColor(0x292c89ff);
 
             tableLayout.addView(tbrow0);
@@ -159,6 +181,7 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
 
                 textView_sn.setText("" + j); // serial no is not related with database, it's just serial, here j is only for serial no
                 j++;
+                i++;
                 i++;
                 textView_sn.setTextColor(0xDCDCDCDC);
                 textView_sn.setGravity(Gravity.CENTER);
@@ -196,16 +219,37 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
 
                 tableRow.addView(textView_address);
 
+
+                // edit button
+
+                ImageButton buttonEdit = new ImageButton(this);
+                buttonEdit.setImageResource(R.drawable.ic_action_edit);
+                buttonEdit.setBackgroundColor(Color.TRANSPARENT);
+                buttonEdit.setPadding(5, 5, 5, 5);
+                buttonEdit.setId(Integer.parseInt(cursor.getString(0))); // string to int to set id
+                buttonEdit.setOnClickListener(this);
+
+
+//                TextView textView_text = new TextView(this);
+//                textView_text.setText("   Edit ");
+//                i++;
+//                i++;
+//                textView_text.setClickable(true);
+//                textView_text.setTextColor(0x442cFFFF);
+//                textView_text.setGravity(Gravity.CENTER);
+
+//                tableRow.addView(textView_text);
+                tableRow.addView(buttonEdit);
+
                 // set color background for table row after each row, starts from 2nd row
                 if (rowColor) {
                     tableRow.setBackgroundColor(0x292c8900);
                     rowColor = false;
                 } else {
-
                     rowColor = true;
                 }
 
-                tableRow.setPadding(0,10,0,10);
+                tableRow.setPadding(0, 10, 0, 10);
 
                 // add the row on the table
                 tableLayout.addView(tableRow);
@@ -214,6 +258,8 @@ public class ViewTaskList extends AppCompatActivity implements View.OnClickListe
         } else {
             textView_empty_task_message.setVisibility(View.VISIBLE);
 
+            // clear previous views from linearLayout
+            tableLayout.removeAllViews(); //if all task deleted then it will remove all previous views
             myAllAnimations.floatingActionButtonShake(getApplicationContext(), fab_newTask, true);
         }
 

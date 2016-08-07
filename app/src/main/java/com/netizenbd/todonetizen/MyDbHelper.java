@@ -31,8 +31,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
             COLUMN_INSTITUTION_MOBILE_NO = "mobile_no",
             COLUMN_INSTITUTION_STUDENT_AMOUNT = "student_amount",
 
-    //    COLUMN_TASK_ID = "inst_id", // we don't need this, because we can use COLUMN_INSTITUTION_ID in task table and they should be same
-    COLUMN_TASK_VISITED_DATE = "task_v_date",
+    COLUMN_TASK_ID = "task_id",
+            COLUMN_TASK_VISITED_DATE = "task_v_date",
             COLUMN_TASK_VISITED_TIME = "task_v_time",
             COLUMN_TASK_NOTE = "task_note",
             COLUMN_TASK_FOLLOWUP_DATE = "task_f_date",
@@ -59,6 +59,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 //            COLUMN_INSTITUTION_STUDENT_AMOUNT + " TEXT)";
 
     private static final String SQL_CreateTaskTable = "CREATE TABLE " + TABLE_TASK + "(" +
+            COLUMN_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + // institution id also in the task table, it is foreign key so it is not unique here
             COLUMN_INSTITUTION_ID + " INTEGER, " + // institution id also in the task table, it is foreign key so it is not unique here
             COLUMN_TASK_VISITED_DATE + " TEXT, " +
             COLUMN_TASK_VISITED_TIME + " TEXT, " +
@@ -88,7 +89,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
 
-    // ok
+    //
     public boolean saveNewInstitutionData(String instName, String instAddress, String authoName,
                                           String authoDesignation, String mobileNo, String stuAmount) {
 
@@ -114,7 +115,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * ok
+     *
      */
     public List<String> getAllInstName() { // to spinner
         List<String> instName = new ArrayList<String>();
@@ -142,7 +143,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * ok
+     *
      */
     public Cursor getAllInstitution(String instName) { // to textView
 
@@ -208,7 +209,20 @@ public class MyDbHelper extends SQLiteOpenHelper {
         //--------------------------
         // get task using inst id
 
-        String selectQuery = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_INSTITUTION_ID + "='" + stringId + "';";
+        String selectQuery = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_INSTITUTION_ID + "='" + stringId + "' ORDER BY " + COLUMN_TASK_FOLLOWUP_DATE + " ASC";
+        SQLiteDatabase db2 = this.getReadableDatabase();
+        Cursor cursor = db2.rawQuery(selectQuery, null);
+
+        // returning task cursor
+        return cursor;
+
+    }
+
+    public Cursor getAllTaskById(int taskId) {
+
+        // get task using inst id
+
+        String selectQuery = "SELECT * FROM " + TABLE_TASK + " WHERE " + COLUMN_TASK_ID + "='" + taskId + "';";
         SQLiteDatabase db2 = this.getReadableDatabase();
         Cursor cursor = db2.rawQuery(selectQuery, null);
 
@@ -275,7 +289,33 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     }
 
-    // ok
+    // update task
+    public long updateTask(String taskId, String visitedTime, String visitedDate, String note, String followupDate, String followupTime) {
+
+        SQLiteDatabase dbb = this.getWritableDatabase(); // Open db as writable mode
+        ContentValues valuesInst = new ContentValues();
+
+        // FOR INSTITUTION TABLE
+        valuesInst.put(COLUMN_TASK_VISITED_DATE, visitedTime);
+        valuesInst.put(COLUMN_TASK_VISITED_TIME, visitedDate);
+        valuesInst.put(COLUMN_TASK_NOTE, note);
+        valuesInst.put(COLUMN_TASK_FOLLOWUP_DATE, followupDate);
+        valuesInst.put(COLUMN_TASK_FOLLOWUP_TIME, followupTime);
+
+
+        // convert
+        String[] convertId = {taskId};
+
+        //  Update task table
+        long rowAffected = dbb.update(TABLE_TASK, valuesInst, COLUMN_TASK_ID + " LIKE ?", convertId);
+
+        dbb.close();
+
+        return rowAffected;
+
+    }
+
+    //
     public long deleteInstitute(String instName) {
 
         SQLiteDatabase dbi = this.getWritableDatabase(); // Open db as writable mode
@@ -291,6 +331,33 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
         return deleteInst + deleteTask;
     }
+
+    //
+    public long deleteTask(String taskId) {
+
+        SQLiteDatabase dbtd = this.getWritableDatabase(); // Open db as writable mode
+
+
+        // convert
+        String[] convertId = {taskId};
+
+        // DELETE ROW FROM task
+        long deleteTask = dbtd.delete(TABLE_TASK, COLUMN_TASK_ID + " LIKE ?", convertId);
+
+        dbtd.close();
+
+        return deleteTask;
+    }
+
+
+//    public boolean deleteTaskFromList(long rowId) {
+//
+//        /* this is what your database delete method should look like
+//        this method deletes by id, the first column in your database*/
+//
+//        return my.delete(TABLE_TASK, COLUMN_INSTITUTION_ID + "=" + rowId, null) > 0;
+//
+//    }
 
 
     public String getIdByNameFromInstitutionTable(String instName) {

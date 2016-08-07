@@ -449,7 +449,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             int j = 1;
             while (cursorTask.moveToNext()) {
-                int i = 0;
+                int i = 1;
 
                 LinearLayout linearLayoutMakePart = new LinearLayout(getApplicationContext());
                 linearLayoutMakePart.setOrientation(LinearLayout.VERTICAL);

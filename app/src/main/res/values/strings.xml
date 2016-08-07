@@ -6,4 +6,5 @@
     <string name="title_activity_view_task_list">View Task List</string>
     <string name="title_activity_add_task">Add Task</string>
     <string name="title_activity_view_institution_details">ViewInstitutionDetails</string>
+    <string name="title_activity_task_edit">Task Edit</string>
 </resources>

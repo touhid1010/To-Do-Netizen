@@ -82,6 +82,7 @@ public class AddTask extends AppCompatActivity implements View.OnClickListener {
 
 
         button_save_addTask = (Button) findViewById(R.id.button_save_addTask);
+
         button_save_addTask.setOnClickListener(this);
 
         // get intent message and set title inst. name // intent from ViewTaskList.java or HomeActivity.java both
