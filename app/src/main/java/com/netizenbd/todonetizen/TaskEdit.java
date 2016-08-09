@@ -238,7 +238,7 @@ public class TaskEdit extends AppCompatActivity implements View.OnClickListener 
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
                 editText_edit_visitedTime.setText(simpleDateFormat.format(mcurrentTime.getTime()));
             }
-        }, hour, minute, false);//Yes 24 hour time
+        }, hour, minute, false); //Yes 24 hour time
         mTimePicker.setTitle("Select Visited Time");
         mTimePicker.show();
     }
